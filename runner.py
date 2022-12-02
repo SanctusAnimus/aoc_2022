@@ -51,7 +51,7 @@ Solutions:
 Timings ({args.run_count} runs):
 \tTotal Parse: {parse_total_time * 1000:.05f}ms
 \tTotal Resolve: {resolve_total_time * 1000:.05f}ms
-\tTotal Complete: {parse_total_time + resolve_total_time * 1000:.05f}ms
+\tTotal Complete: {(parse_total_time + resolve_total_time) * 1000:.05f}ms
 \tMin: {min_time * 1000:.05f}ms
 \tMax: {max_time * 1000:.05f}ms
 \tAvg: {(parse_total_time + resolve_total_time) / args.run_count * 1000:.05f}ms

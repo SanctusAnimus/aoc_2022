@@ -1,80 +1,85 @@
+Rock = 1
+Paper = 2
+Scissors = 3
+
+Lose = 0
+Draw = 3
+Win = 6
+
+Lose_encoded = 1
+Draw_encoded = 2
+Win_encoded = 3
+
 FIGURES = {
-    "A": 1,  # rock,
-    "B": 2,  # paper,
-    "C": 3,  # scissors,
-    "X": 1,  # rock,
-    "Y": 2,  # paper,
-    "Z": 3,  # scissors,
+    "A": Rock,
+    "B": Paper,
+    "C": Scissors,
+    "X": Rock,
+    "Y": Paper,
+    "Z": Scissors,
+}
+
+P1_OUTCOMES = {
+    Rock: {
+        Rock: Rock + Draw,
+        Paper: Paper + Win,
+        Scissors: Scissors + Lose,
+    },
+    Paper: {
+        Rock: Rock + Lose,
+        Paper: Paper + Draw,
+        Scissors: Scissors + Win,
+    },
+    Scissors: {
+        Rock: Rock + Win,
+        Paper: Paper + Lose,
+        Scissors: Scissors + Draw,
+    },
 }
 
 P2_OUTCOMES = {
-    1: 0,
-    2: 3,
-    3: 6,
+    Lose_encoded: {
+        Rock: Lose + Scissors,
+        Paper: Lose + Rock,
+        Scissors: Lose + Paper,
+    },
+    Draw_encoded: {
+        Rock: Draw + Rock,
+        Paper: Draw + Paper,
+        Scissors: Draw + Scissors,
+    },
+    Win_encoded: {
+        Rock: Win + Paper,
+        Paper: Win + Scissors,
+        Scissors: Win + Rock,
+    },
 }
 
 
 def parse_input(raw_input: list[str]):
     return [
-        [FIGURES[letter] for letter in line.strip().split(" ")]
+        [FIGURES[letter] for letter in line.rstrip().split(" ")]
         for line in raw_input
     ]
 
 
-def get_winner(a, b):
-    if a == b:
-        return 3
-
-    # rock wins scissors
-    elif abs(a - b) == 2:
-        return 0 if a == 1 else 6
-
-    # scissors win paper, paper wins rock
-    if b > a:
-        return 6
-
-    return 0
-
-
-def get_figure_cost_for_outcome(a, b):
-    expected_outcome = P2_OUTCOMES[b]
-
-    # draw - return same cost as A
-    if expected_outcome == 3:
-        return expected_outcome + a
-
-    winning_figure_cost = a + 1
-    losing_figure_cost = a - 1
-
-    # if we have to lose, return losing figure, underflowing into scissors
-    if expected_outcome == 0:
-        return expected_outcome + (losing_figure_cost if losing_figure_cost > 0 else 3)
-
-    # if we have to win, return winning figure, overflowing into rock
-    if expected_outcome == 6:
-        return expected_outcome + (winning_figure_cost if winning_figure_cost <= 3 else 1)
-
-    print("FAILED TO FIND OUTCOME: ", a, b, expected_outcome)
-
-
 def resolve(_input: list[list[str]]):
-    p1 = sum([b + get_winner(a, b) for a, b in _input])
-    p2 = sum([get_figure_cost_for_outcome(a, b) for a, b in _input])
+    p1 = sum(P1_OUTCOMES[a][b] for a, b in _input)
+    p2 = sum(P2_OUTCOMES[b][a] for a, b in _input)
 
     return p1, p2
 
 
 """
-12679
+Solutions:
+        Part 1: 12679
+        Part 2: 14470
 
-
-A X
-A Y
-A Z
-B X
-B Y
-B Z
-C X
-C Y
-C Z
+Timings (10000 runs):
+        Total Parse: 6903.25750ms
+        Total Resolve: 2634.15610ms
+        Total Complete: 9537.41360ms
+        Min: 0.87040ms
+        Max: 1.88490ms
+        Avg: 0.95374ms
 """
