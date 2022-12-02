@@ -1,57 +1,57 @@
-Rock = 1
-Paper = 2
-Scissors = 3
+ROCK = 1
+PAPER = 2
+SCISSORS = 3
 
-Lose = 0
-Draw = 3
-Win = 6
+LOSE = 0
+DRAW = 3
+WIN = 6
 
-Lose_encoded = 1
-Draw_encoded = 2
-Win_encoded = 3
+LOSE_ENCODED = 1
+DRAW_ENCODED = 2
+WIN_ENCODED = 3
 
 FIGURES = {
-    "A": Rock,
-    "B": Paper,
-    "C": Scissors,
-    "X": Rock,
-    "Y": Paper,
-    "Z": Scissors,
+    "A": ROCK,
+    "B": PAPER,
+    "C": SCISSORS,
+    "X": ROCK,
+    "Y": PAPER,
+    "Z": SCISSORS,
 }
 
 P1_OUTCOMES = {
-    Rock: {
-        Rock: Rock + Draw,
-        Paper: Paper + Win,
-        Scissors: Scissors + Lose,
+    ROCK: {
+        ROCK: ROCK + DRAW,
+        PAPER: PAPER + WIN,
+        SCISSORS: SCISSORS + LOSE,
     },
-    Paper: {
-        Rock: Rock + Lose,
-        Paper: Paper + Draw,
-        Scissors: Scissors + Win,
+    PAPER: {
+        ROCK: ROCK + LOSE,
+        PAPER: PAPER + DRAW,
+        SCISSORS: SCISSORS + WIN,
     },
-    Scissors: {
-        Rock: Rock + Win,
-        Paper: Paper + Lose,
-        Scissors: Scissors + Draw,
+    SCISSORS: {
+        ROCK: ROCK + WIN,
+        PAPER: PAPER + LOSE,
+        SCISSORS: SCISSORS + DRAW,
     },
 }
 
 P2_OUTCOMES = {
-    Lose_encoded: {
-        Rock: Lose + Scissors,
-        Paper: Lose + Rock,
-        Scissors: Lose + Paper,
+    LOSE_ENCODED: {
+        ROCK: LOSE + SCISSORS,
+        PAPER: LOSE + ROCK,
+        SCISSORS: LOSE + PAPER,
     },
-    Draw_encoded: {
-        Rock: Draw + Rock,
-        Paper: Draw + Paper,
-        Scissors: Draw + Scissors,
+    DRAW_ENCODED: {
+        ROCK: DRAW + ROCK,
+        PAPER: DRAW + PAPER,
+        SCISSORS: DRAW + SCISSORS,
     },
-    Win_encoded: {
-        Rock: Win + Paper,
-        Paper: Win + Scissors,
-        Scissors: Win + Rock,
+    WIN_ENCODED: {
+        ROCK: WIN + PAPER,
+        PAPER: WIN + SCISSORS,
+        SCISSORS: WIN + ROCK,
     },
 }
 
