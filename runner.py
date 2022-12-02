@@ -3,6 +3,15 @@ from argparse import ArgumentParser
 from time import perf_counter
 
 
+class COLOR:
+    HEADER = "\033[38;4;95;4;1m"
+    SOLUTION = "\033[38;5;148;4;1m"
+    OKGREEN = "\033[38;4;92;1m"
+    ENDC = "\033[0m"
+    TIME_PART = "\033[38;5;100;1m"
+    TIME_COMPLETE = "\033[38;5;76;4;1m"
+
+
 def main():
     parser = ArgumentParser()
     parser.add_argument("day", help="Which day to run", type=int, choices=range(1, 26))
@@ -43,18 +52,18 @@ def main():
             max_time = time_taken_total
 
     print(f"""
----------------- DAY #{args.day} ----------------
+---------------- DAY {COLOR.HEADER}#{args.day}{COLOR.ENDC} ----------------
 Solutions:
-\tPart 1: {p1}
-\tPart 2: {p2}
+  Part 1: {COLOR.SOLUTION}{p1}{COLOR.ENDC}
+  Part 2: {COLOR.SOLUTION}{p2}{COLOR.ENDC}
 
-Timings ({args.run_count} runs):
-\tTotal Parse: {parse_total_time * 1000:.05f}ms
-\tTotal Resolve: {resolve_total_time * 1000:.05f}ms
-\tTotal Complete: {(parse_total_time + resolve_total_time) * 1000:.05f}ms
-\tMin: {min_time * 1000:.05f}ms
-\tMax: {max_time * 1000:.05f}ms
-\tAvg: {(parse_total_time + resolve_total_time) / args.run_count * 1000:.05f}ms
+Timings ({COLOR.HEADER}{args.run_count}{COLOR.ENDC} runs), ms:
+  Total Parse: {COLOR.TIME_PART}{parse_total_time * 1000:.05f}{COLOR.ENDC}
+  Total Resolve: {COLOR.TIME_PART}{resolve_total_time * 1000:.05f}{COLOR.ENDC}
+  Total Complete: {COLOR.TIME_COMPLETE}{(parse_total_time + resolve_total_time) * 1000:.05f}{COLOR.ENDC}
+  Min: {COLOR.TIME_PART}{min_time * 1000:.05f}{COLOR.ENDC}
+  Max: {COLOR.TIME_PART}{max_time * 1000:.05f}{COLOR.ENDC}
+  Avg: {COLOR.TIME_COMPLETE}{(parse_total_time + resolve_total_time) / args.run_count * 1000:.05f}{COLOR.ENDC}
     """)
 
 
