@@ -1,4 +1,4 @@
-def parse_input(raw_input: list[str]):
+def parse_input(raw_input: list[str]) -> list[int]:
     elfs = []
     current_value = 0
     for line in raw_input:
@@ -11,5 +11,5 @@ def parse_input(raw_input: list[str]):
     return elfs
 
 
-def resolve(_input):
+def resolve(_input: list[int]) -> (int, int):
     return max(*_input), sum(sorted(_input)[-3:])
