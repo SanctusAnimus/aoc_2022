@@ -51,8 +51,7 @@ def main():
         if time_taken_total > max_time:
             max_time = time_taken_total
 
-    print(f"""
----------------- DAY {COLOR.HEADER}#{args.day}{COLOR.ENDC} ----------------
+    print(f"""---------------- DAY {COLOR.HEADER}#{args.day}{COLOR.ENDC} ----------------
 Solutions:
   Part 1: {COLOR.SOLUTION}{p1}{COLOR.ENDC}
   Part 2: {COLOR.SOLUTION}{p2}{COLOR.ENDC}
