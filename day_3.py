@@ -1,19 +1,16 @@
 from string import ascii_lowercase, ascii_uppercase
 
+from util import chunked
+
 ITEM_TYPES = ascii_lowercase + ascii_uppercase
 ITEM_TYPE_COST = {letter: index for index, letter in enumerate(ITEM_TYPES, start=1)}
 
 
-def parse_input(raw_input: list[str]):
+def parse_input(raw_input: list[str]) -> list[str]:
     return [line.rstrip() for line in raw_input]
 
 
-def chunked(src: list[any], size: int):
-    for i in range(0, len(src), size):
-        yield src[i:i + size]
-
-
-def resolve(_input: list[list[str]]):
+def resolve(_input: list[str]) -> (int, int):
     p1 = sum(
         ITEM_TYPE_COST[
             set(rucksack[:len(rucksack) // 2]).intersection(set(rucksack[len(rucksack) // 2:])).pop()
