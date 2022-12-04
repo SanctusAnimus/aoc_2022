@@ -62,7 +62,9 @@ Timings ({COLOR.HEADER}{args.run_count}{COLOR.ENDC} runs), ms:
   Total Complete: {COLOR.TIME_COMPLETE}{(parse_total_time + resolve_total_time) * 1000:.05f}{COLOR.ENDC}
   Min: {COLOR.TIME_PART}{min_time * 1000:.05f}{COLOR.ENDC}
   Max: {COLOR.TIME_PART}{max_time * 1000:.05f}{COLOR.ENDC}
-  Avg: {COLOR.TIME_COMPLETE}{(parse_total_time + resolve_total_time) / args.run_count * 1000:.05f}{COLOR.ENDC}
+  Avg: {COLOR.TIME_COMPLETE}{(parse_total_time + resolve_total_time) / args.run_count * 1000:.05f}{COLOR.ENDC} 
+    [Parse]   {COLOR.TIME_PART}{parse_total_time / args.run_count * 1000:.05f}{COLOR.ENDC}
+    [Resolve] {COLOR.TIME_PART}{resolve_total_time / args.run_count * 1000:.05f}{COLOR.ENDC}
     """)
 
 
