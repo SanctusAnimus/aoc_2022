@@ -62,17 +62,17 @@ def resolve(_input: tuple[dict[int, list[str]], list[tuple[int]]]) -> (int, int)
 
 """
 ---------------- DAY #5 ----------------
-Solutions:                              
-  Part 1: JDTMRWCQJ                     
-  Part 2: VHJDDCWRD                     
-                                        
-Timings (10000 runs), ms:               
-  Total Parse: 6367.40550               
-  Total Resolve: 3144.48880             
-  Total Complete: 9511.89430            
-  Min: 0.90350                          
-  Max: 1.69030                          
-  Avg: 0.95119                          
-    [Parse]   0.63674                   
-    [Resolve] 0.31445 
+Solutions:
+  Part 1: JDTMRWCQJ
+  Part 2: VHJDDCWRD
+
+Timings (10000 runs), ms:
+  Total Parse: 6254.61900
+  Total Resolve: 3146.00640
+  Total Complete: 9400.62540
+  Min: 0.88100
+  Max: 1.77940
+  Avg: 0.94006
+    [Parse]   0.62546
+    [Resolve] 0.31460
 """
