@@ -16,8 +16,8 @@ def parse_input(raw_input: list[str]):
     for line in raw_input:
         if line == "\n":
             # blocks definition ended - switch to parsing commands, and turn partial blocks definition into final
-            # turn block lines into columns, last element of each is column number
-            # rest is reversed and filtered for easier placement access later
+            # turn block lines into columns, first element of each is column number
+            # rest is filtered for easier placement access later
             stacks = zip_longest(*reversed(blocks_intermediate), fillvalue=' ')
             for stack in stacks:
                 blocks_complete[int(stack[0])] = list(block for block in stack[1:] if block != " ")
