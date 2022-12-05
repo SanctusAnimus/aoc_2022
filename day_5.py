@@ -1,6 +1,5 @@
 from copy import deepcopy
 from re import split, compile
-from util import chunked
 
 from itertools import zip_longest
 
@@ -32,9 +31,9 @@ def parse_input(raw_input: list[str]):
             # and parse command line into tuple of (count, from, to)
             commands.append(tuple(map(int, split(command_splitter, stripped[5:]))))
         else:
-            # store blocks per-line, taking chunks of 4 ([N] plus space) and extracting N from it
-            # works as well to extract stack number
-            blocks_intermediate.append([block[1] for block in chunked(stripped, 4)])
+            # starting from second char, take every 4th
+            # takes every block's letter or stack number
+            blocks_intermediate.append(stripped[1::4])
     return blocks_complete, commands
 
 
