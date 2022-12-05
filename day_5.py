@@ -16,18 +16,20 @@ def parse_input(raw_input: list[str]):
 
     for line in raw_input:
         if line == "\n":
+            # blocks definition ended - switch to parsing commands, and turn partial blocks definition into final
             # turn block lines into columns, last element of each is column number
             # rest is reversed and filtered for easier placement access later
-            stacks = zip_longest(*blocks_intermediate, fillvalue=' ')
+            stacks = zip_longest(*reversed(blocks_intermediate), fillvalue=' ')
             for stack in stacks:
-                blocks_complete[int(stack[-1])] = list(filter(lambda s: s != ' ', reversed(stack[:-1])))
+                blocks_complete[int(stack[0])] = list(block for block in stack[1:] if block != " ")
             parsing_commands = True
             continue
 
         stripped = line.rstrip()
 
         if parsing_commands:
-            # parse command line into tuple of (count, from, to)
+            # remove known "move " from the start of the string
+            # and parse command line into tuple of (count, from, to)
             commands.append(tuple(map(int, split(command_splitter, stripped[5:]))))
         else:
             # store blocks per-line, taking chunks of 4 ([N] plus space) and extracting N from it
@@ -40,7 +42,7 @@ def resolve(_input: tuple[dict[int, list[str]], list[tuple[int]]]) -> (int, int)
     stacks_p1, commands = _input
 
     stacks_p2 = deepcopy(stacks_p1)
-
+    # stacks are ordered from bottom to top - the highest element is at the end of each stack list
     for count, _from, to in commands:
         # p1 moves 1 by 1 - reversing order for multiple blocks
         # p2 takes as-is
@@ -61,16 +63,17 @@ def resolve(_input: tuple[dict[int, list[str]], list[tuple[int]]]) -> (int, int)
 
 """
 ---------------- DAY #5 ----------------
-  Part 1: JDTMRWCQJ
-  Part 2: VHJDDCWRD
-
-Timings (10000 runs), ms:
-  Total Parse: 6474.74840
-  Total Resolve: 3214.25530
-  Total Complete: 9689.00370
-  Min: 0.92080
-  Max: 1.71590
-  Avg: 0.96890
-    [Parse]   0.64747
-    [Resolve] 0.32143
+Solutions:                              
+  Part 1: JDTMRWCQJ                     
+  Part 2: VHJDDCWRD                     
+                                        
+Timings (10000 runs), ms:               
+  Total Parse: 6367.40550               
+  Total Resolve: 3144.48880             
+  Total Complete: 9511.89430            
+  Min: 0.90350                          
+  Max: 1.69030                          
+  Avg: 0.95119                          
+    [Parse]   0.63674                   
+    [Resolve] 0.31445 
 """
