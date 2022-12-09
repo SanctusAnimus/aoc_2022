@@ -99,13 +99,12 @@ Solutions:
   Part 1: 1763
   Part 2: 671160
 
-Timings (1 runs), ms:
-  Total Parse: 0.55050
-  Total Resolve: 8.70100
-  Total Complete: 9.25150
-  Min: 9.25150
-  Max: 9.25150
-  Avg: 9.25150
-    [Parse]   0.55050
-    [Resolve] 8.70100
+Timings (100 runs), ms:
+  Total Parse: 51.02570
+  Total Complete: 1201.68220
+  Min: 11.08270
+  Max: 12.46090
+  Avg: 12.01682
+    [Parse]   0.51026
+    [Resolve] 11.50656
 """
