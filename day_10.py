@@ -28,7 +28,7 @@ def resolve(_input):
         cycle_cost = CYCLE_COSTS[command]
 
         for i in range(cycle_cost):
-            # if current cycle overlaps sprite (centered at register X value) - draw #
+            # if current cycle overlaps sprite (centered at register X value) - draw `#`
             if register_x + 1 >= current_cycle % 40 >= register_x - 1:
                 p2_display[current_cycle] = "#"
 
@@ -43,6 +43,7 @@ def resolve(_input):
         register_x += int(command_line[1])
 
     # starting \n is for runner output - to start ascii art from new line properly
+    # split combined string of display into sub-strings of 40 length, and rejoin them with new lines
     p2 = "\n" + "\n".join(chunked("".join(p2_display), 40))
 
     return p1, p2
