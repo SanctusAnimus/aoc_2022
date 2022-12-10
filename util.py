@@ -1,4 +1,4 @@
-from typing import TypeVar, Literal
+from typing import TypeVar, Iterator
 from collections.abc import Sequence
 from functools import reduce
 from operator import getitem
@@ -8,7 +8,7 @@ K = TypeVar("K")
 V = TypeVar("V")
 
 
-def chunked(src: Sequence[T], size: int) -> list[list[T]]:
+def chunked(src: Sequence[T], size: int) -> Iterator[T]:
     for i in range(0, len(src), size):
         yield src[i:i + size]
 

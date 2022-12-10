@@ -51,10 +51,12 @@ def main():
         if time_taken_total > max_time:
             max_time = time_taken_total
 
+    result_highlight = COLOR.SOLUTION if not getattr(day_module, "RUNNER_DISABLE_RESULT_HIGHLIGHT", False) else ""
+
     print(f"""---------------- DAY {COLOR.HEADER}#{args.day}{COLOR.ENDC} ----------------
 Solutions:
-  Part 1: {COLOR.SOLUTION}{p1}{COLOR.ENDC}
-  Part 2: {COLOR.SOLUTION}{p2}{COLOR.ENDC}
+  Part 1: {result_highlight}{p1}{COLOR.ENDC}
+  Part 2: {result_highlight}{p2}{COLOR.ENDC}
 
 Timings ({COLOR.HEADER}{args.run_count}{COLOR.ENDC} runs), ms:
   Total Parse: {COLOR.TIME_PART}{parse_total_time * 1000:.05f}{COLOR.ENDC}
